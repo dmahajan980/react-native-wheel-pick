@@ -25,7 +25,6 @@
   "dependencies": {},
   "peerDependencies": {
     "@react-native-community/datetimepicker": ">=6.1.3",
-    "@react-native-picker/picker": ">=2.4.1",
     "prop-types": "*"
   }
 }
