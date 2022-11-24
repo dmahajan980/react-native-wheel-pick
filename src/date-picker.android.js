@@ -183,7 +183,7 @@ export default class DatePicker extends PureComponent {
   }
 
   render() {
-    const width_wrapper = this.props.style.width || '100%';
+    const width_wrapper = this.props.style?.width ?? '100%';
 
     return (
       <View style={{ ...styles.row, width: width_wrapper }}>

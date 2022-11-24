@@ -4,7 +4,7 @@ import { requireNativeComponent, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 // const ViewPropTypes = RNViewPropTypes || View.propTypes;
-let firstTimeOnChange = true
+let firstTimeOnChange = true;
 
 const stateFromProps = (props) => {
   let selectedIndex = 0;
@@ -37,22 +37,22 @@ class WheelCurvedPicker extends PureComponent {
   };
 
   state = {
-    selectedIndex: 0
-  }
+    selectedIndex: 0,
+  };
 
   onValueChange = ({ nativeEvent: { data } }) => {
-    this.props.onValueChange(data); 
-    if(firstTimeOnChange) {
-      return firstTimeOnChange = false
+    this.props.onValueChange(data);
+    if (firstTimeOnChange) {
+      return (firstTimeOnChange = false);
     }
-  }
+  };
 
   // componentDidMount() {
   //   this.setState(stateFromProps(this.props));
   // }
 
   static getDerivedStateFromProps(nextProps) {
-    return stateFromProps(nextProps)
+    return stateFromProps(nextProps);
   }
 
   render() {
@@ -81,6 +81,9 @@ class Item extends PureComponent {
 
 WheelCurvedPicker.Item = Item;
 
-const WheelCurvedPickerNative = requireNativeComponent('WheelCurvedPicker', WheelCurvedPicker);
+const WheelCurvedPickerNative = requireNativeComponent(
+  'WheelCurvedPicker',
+  WheelCurvedPicker
+);
 
 export default WheelCurvedPicker;
