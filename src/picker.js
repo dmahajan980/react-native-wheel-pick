@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Platform } from 'react-native';
-// import { ColorPropType, ViewPropTypes as RNViewPropTypes, } from 'deprecated-react-native-prop-types'
+
 import PropTypes from 'prop-types';
 import WheelCurvedPicker from './WheelCurvedPicker';
 
@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     height: 220,
   },
 });
-
 
 export default class Picker extends Component {
   static propTypes = {
@@ -46,23 +45,27 @@ export default class Picker extends Component {
   };
 
   validateDeprecateProps = (oldProp = 'curtain', newProp = '') => {
-    if(this.props){
-      if(typeof this.props[oldProp] !== 'undefined'){
+    if (this.props) {
+      if (typeof this.props[oldProp] !== 'undefined') {
         this.props[oldProp] = undefined;
 
-        if(newProp === ''){
-          console.warn(`react-native-wheel-pick : "${oldProp}" Prop was deprecated. Please remove it for improve native performance.`)
+        if (newProp === '') {
+          console.warn(
+            `react-native-wheel-pick : "${oldProp}" Prop was deprecated. Please remove it for improve native performance.`
+          );
         } else {
-          console.warn(`react-native-wheel-pick : "${oldProp}" Prop was deprecated. Please use "${newProp}" instead.`)
+          console.warn(
+            `react-native-wheel-pick : "${oldProp}" Prop was deprecated. Please use "${newProp}" instead.`
+          );
         }
       }
     }
-  }
+  };
 
   render() {
     const { pickerData, style, ...props } = this.props;
 
-    if(Platform.OS === 'android'){
+    if (Platform.OS === 'android') {
       //checkDeprecatedProp
       this.validateDeprecateProps('atmospheric');
       this.validateDeprecateProps('curved');
@@ -86,8 +89,12 @@ export default class Picker extends Component {
         {pickerData.map((data, index) => (
           <PickerItem
             key={index}
-            value={typeof data.value !== 'undefined' ? data.value : data.toString()}
-            label={typeof data.label !== 'undefined' ? data.label : data.toString()}
+            value={
+              typeof data.value !== 'undefined' ? data.value : data.toString()
+            }
+            label={
+              typeof data.label !== 'undefined' ? data.label : data.toString()
+            }
           />
         ))}
       </WheelCurvedPicker>
