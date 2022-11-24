@@ -14,7 +14,6 @@ const registerCustomDatePickerIOS = (CustomDatePickerIOS) => {
 };
 
 module.exports = {
-  Picker,
   DatePicker: DatePickerComponent,
   registerCustomDatePickerIOS,
 };

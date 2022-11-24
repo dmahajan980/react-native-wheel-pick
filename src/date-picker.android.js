@@ -114,7 +114,7 @@ export default class DatePicker extends PureComponent {
   }
 
   getDaysInMonth(date) {
-    return new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   }
 
   parseDate = (date) => {
@@ -308,9 +308,8 @@ export default class DatePicker extends PureComponent {
     let dayNum = dayRange.length;
 
     if (oldMonth !== currentMonth || oldYear !== currentYear) {
-      dayNum = this.getDaysInMonth(
-        new Date(`${currentYear}-${currentMonth + 1}`)
-      );
+      const date = new Date(currentYear, currentMonth);
+      dayNum = this.getDaysInMonth(date);
     }
 
     if (dayNum !== dayRange.length) {
@@ -379,7 +378,16 @@ export default class DatePicker extends PureComponent {
 
   getValue() {
     const { year, month, date, hour, minute } = this.newValue;
-    const nextDate = new Date(year, month, date, hour, minute);
+
+    const isoMonth = month + 1;
+    const monthStr = isoMonth < 10 ? `0${isoMonth}` : isoMonth;
+    const dateStr = date < 10 ? `0${date}` : date;
+    const hourStr = hour < 10 ? `0${hour}` : hour;
+    const minuteStr = minute < 10 ? `0${minute}` : minute;
+
+    const nextDate = new Date(
+      `${year}-${monthStr}-${dateStr}T${hourStr}:${minuteStr}`
+    );
 
     if (nextDate < this.props.minimumDate) {
       return this.props.minimumDate;
